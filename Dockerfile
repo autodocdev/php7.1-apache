@@ -37,7 +37,6 @@ ENV APACHE_RUN_GROUP application
 
 ADD ./php.ini /etc/php/7.1/apache2
 ADD ./php.ini /etc/php/7.1/cli
-ADD ./ssl/apache.crt ssl/apache.key /etc/apache2/ssl/
 ADD ./envvars /etc/apache2/
 
 COPY sites-enabled/*.conf /etc/apache2/sites-enabled/
@@ -59,7 +58,7 @@ RUN \
     mv phpunit.phar /usr/local/bin/phpunit
 
 
-EXPOSE 80 443
+EXPOSE 8888
 
 WORKDIR /home/application
 
