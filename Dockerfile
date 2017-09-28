@@ -34,6 +34,8 @@ RUN add-apt-repository -y -u ppa:ondrej/php && \
 
 ENV APACHE_RUN_USER application
 ENV APACHE_RUN_GROUP application
+ENV APACHE_SERVER_NAME localhost
+ENV APACHE_HTTP_PORT 8888
 
 ADD ./php.ini /etc/php/7.1/apache2
 ADD ./php.ini /etc/php/7.1/cli
@@ -57,6 +59,8 @@ RUN \
     chmod +x phpunit.phar && \
     mv phpunit.phar /usr/local/bin/phpunit
 
+RUN ln -sf /dev/stdout /var/log/apache2/access.log
+RUN ln -sf /dev/stderr /var/log/apache2/error.log
 
 EXPOSE 8888
 
