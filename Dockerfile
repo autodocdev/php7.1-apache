@@ -37,6 +37,12 @@ ENV APACHE_RUN_GROUP application
 ENV APACHE_SERVER_NAME localhost
 ENV APACHE_HTTP_PORT 8888
 
+ENV GIT_NAME teste
+ENV GIT_EMAIL teste@teste.com.br
+
+RUN git config --global user.name $GIT_NAME
+RUN git config --global user.email $GIT_EMAIL
+
 ADD ./php.ini /etc/php/7.1/apache2
 ADD ./php.ini /etc/php/7.1/cli
 ADD ./envvars /etc/apache2/
