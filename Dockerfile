@@ -1,6 +1,6 @@
 FROM autodoc/ubuntu-base:latest
 
-MAINTAINER Danilo Correa <danilosilva87@gmail.com>
+MAINTAINER Danilo Correa <dcorrea@autodoc.com.br>
 
 USER root
 
@@ -40,9 +40,12 @@ ENV APACHE_HTTP_PORT 8888
 ENV GIT_NAME teste
 ENV GIT_EMAIL teste@teste.com.br
 
+USER application
 RUN git config --global user.name $GIT_NAME
 RUN git config --global user.email $GIT_EMAIL
 
+
+USER root
 ADD ./php.ini /etc/php/7.1/apache2
 ADD ./php.ini /etc/php/7.1/cli
 ADD ./envvars /etc/apache2/
@@ -64,6 +67,22 @@ RUN \
     curl -LO https://phar.phpunit.de/phpunit.phar && \
     chmod +x phpunit.phar && \
     mv phpunit.phar /usr/local/bin/phpunit
+
+RUN \
+    curl -OL https://squizlabs.github.io/PHP_CodeSniffer/phpcs.phar && \
+    chmod +x phpcs.phar && \
+    mv phpcs.phar /usr/local/bin/phpcs
+
+RUN \
+    curl -OL https://squizlabs.github.io/PHP_CodeSniffer/phpcbf.phar && \
+    chmod +x phpcbf.phar && \
+    mv phpcbf.phar /usr/local/bin/phpcbf
+
+RUN \
+    curl -OL http://static.phpmd.org/php/latest/phpmd.phar && \
+    chmod +x phpmd.phar && \
+    mv phpmd.phar /usr/local/bin/phpmd
+
 
 RUN ln -sf /dev/stdout /var/log/apache2/access.log
 RUN ln -sf /dev/stderr /var/log/apache2/error.log
