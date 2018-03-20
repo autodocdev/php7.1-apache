@@ -26,11 +26,13 @@ RUN add-apt-repository -y -u ppa:ondrej/php && \
     php7.1-sqlite3 \
     php7.1-xsl \ 
     php7.1-zip \
+    php7.1-dev \
     php-memcached \
     libapache2-mod-php7.1 \
     nodejs \
     apache2 && \
-    npm install -g bower
+    npm install -g bower && \
+    pecl install grpc
 
 ENV APACHE_RUN_USER application
 ENV APACHE_RUN_GROUP application
