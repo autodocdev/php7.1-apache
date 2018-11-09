@@ -32,7 +32,9 @@ RUN add-apt-repository -y -u ppa:ondrej/php && \
     nodejs \
     apache2 && \
     npm install -g bower && \
-    pecl install grpc
+    pecl install grpc &&
+    poppler-utils
+
 
 ENV APACHE_RUN_USER application
 ENV APACHE_RUN_GROUP application
