@@ -62,32 +62,6 @@ RUN \
     curl -sS https://getcomposer.org/installer | \
     php -- --install-dir=/usr/local/bin --filename=composer
 
-RUN \
-    curl -LO https://deployer.org/deployer.phar && \
-    mv deployer.phar /usr/local/bin/dep && \
-    chmod +x /usr/local/bin/dep
-
-RUN \
-    curl -LO https://phar.phpunit.de/phpunit.phar && \
-    chmod +x phpunit.phar && \
-    mv phpunit.phar /usr/local/bin/phpunit
-
-RUN \
-    curl -OL https://squizlabs.github.io/PHP_CodeSniffer/phpcs.phar && \
-    chmod +x phpcs.phar && \
-    mv phpcs.phar /usr/local/bin/phpcs
-
-RUN \
-    curl -OL https://squizlabs.github.io/PHP_CodeSniffer/phpcbf.phar && \
-    chmod +x phpcbf.phar && \
-    mv phpcbf.phar /usr/local/bin/phpcbf
-
-RUN \
-    curl -OL http://static.phpmd.org/php/latest/phpmd.phar && \
-    chmod +x phpmd.phar && \
-    mv phpmd.phar /usr/local/bin/phpmd
-
-
 RUN ln -sf /dev/stdout /var/log/apache2/access.log
 RUN ln -sf /dev/stderr /var/log/apache2/error.log
 
