@@ -28,6 +28,7 @@ RUN add-apt-repository -y -u ppa:ondrej/php && \
     php7.1-zip \
     php7.1-dev \
     php7.1-intl \
+    php7.1-imagick \
     php-memcached \
     libapache2-mod-php7.1 \
     nodejs \
